@@ -17,7 +17,7 @@ def main():
 
     # Call the draw_sky and draw_ground functions in this file.
     draw_sky(canvas, scene_width, scene_height)
-    #draw_ground(canvas, scene_width, scene_height)
+    draw_ground(canvas, scene_width, scene_height)
 
     # Call the finish_drawing function
     # in the draw2d.py library.
@@ -28,7 +28,6 @@ def draw_sky(canvas, scene_width, scene_height):
     """Draw the sky and all the objects in the sky."""
     draw_rectangle(canvas, 0, scene_height / 3,
         scene_width, scene_height, width=0, fill="sky blue")
-    draw_rectangle(canvas, 20, 20, 300, 200, width=0, fill="black")
 
 
 def draw_ground(canvas, scene_width, scene_height):
