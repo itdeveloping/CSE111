@@ -1,10 +1,7 @@
-""""
-File: scene.py
+"""" File: scene.py
 Author: Oscar Rodriguez
 
-Purpose: Prove that you can write functions with parameters and call those functions multiple times with arguments.
-
-"""
+Purpose: Prove that you can write functions with parameters and call those functions multiple times with arguments. """
 
 # Import the functions from the Draw 2-D library
 # so that they can be used in this program.
