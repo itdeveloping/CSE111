@@ -7,7 +7,7 @@ Purpose
 Prove that you can write a Python program and write and run test functions to help you find and fix mistakes.
 """
 
-from sentences import get_determiner, get_noun, get_verb
+from sentences import get_determiner, get_noun, get_verb, get_preposition,  get_prepositional_phrase
 import random
 import pytest
 
@@ -161,6 +161,47 @@ def test_get_verb():
         # is one of the words in the future_tense list.
         assert word in future_tense
 
+def test_get_preposition():
+    # 1. Test the single noun.
+
+    prepositions = ["about", "above", "across", "after", "along", "around", "at", "before", "behind", "below", "beyond", "by", "despite", "except", "for", "from", "in", "into", "near", "of", "off", "on", "onto", "out", "over", "past", "to", "under", "with", "without"]
+
+    # This loop will repeat the statements inside it 11 times.
+    # If a loop's counting variable is not used inside the
+    # body of the loop, many programmers will use underscore
+    # (_) as the variable name for the counting variable.
+    for _ in range(31):
+
+        # Call the get_preposition function which
+        # should return a single preposition.
+        word = get_preposition()
+
+        # Verify that the word returned from get_preposition
+        # is one of the words in the single_determiners list.
+        assert word in prepositions
+
+def test_get_prepositional_phrase():
+    # 1. Test the single noun.
+
+
+    # This loop will repeat the statements inside it 11 times.
+    # If a loop's counting variable is not used inside the
+    # body of the loop, many programmers will use underscore
+    # (_) as the variable name for the counting variable.
+    for _ in range(31):
+
+        # Call the get_preposition function which
+        # should return a single preposition.
+        preposition = get_preposition()
+        determiner = get_determiner(1)
+        noun = get_noun(1)
+
+        # Verify that the word returned from get_preposition
+        # is one of the words in the single_determiners list.
+        assert word in prepositions
+
+
+    
 # Call the main function that is part of pytest so that the
 # computer will execute the test functions in this file.
 pytest.main(["-v", "--tb=line", "-rN", __file__])
