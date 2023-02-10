@@ -135,18 +135,17 @@ def get_prepositional_phrase(quantity):
             be single or pluaral.
     Return: a prepositional phrase.
     """
-    return (get_preposition()+" "+get_determiner(quantity)+" "+get_noun(quantity))
-    
+    pass
 
 #define main function
 def main():
 
     # Make a list to use it as paramaters
-    list = ([1,'past'],[1,'present'],[1,'future'],[3,'past'],[4,'present'],[5,'future'])
+    list = ([1,'past'],[1,'present'],[1,'future'],[2,'past'],[2,'present'],[2,'future'])
     for elements in list:
        quantity=elements[0]
        tense=elements[1]
-       print (get_determiner(quantity).capitalize(), get_noun(quantity), get_verb(quantity, tense),get_prepositional_phrase(quantity))
+       print (get_determiner(quantity).capitalize(), get_noun(quantity), get_verb(quantity, tense))
 
 #calls the main function
 main()
