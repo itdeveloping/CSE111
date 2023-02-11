@@ -13,6 +13,8 @@ from sentences import (
     get_verb,
     get_preposition,
     get_prepositional_phrase,
+    get_first_prepositional_phrase,
+    get_adjetive
 )
 import random
 import pytest
@@ -379,7 +381,123 @@ def test_get_prepositional_phrase():
         assert plural_determiner in plural_determiners
         assert plural_noun in plural_nouns
 
+def test_get_first_prepositional_phrase():
+    # Test the prepositional phrase
 
+    # Create Lists.
+    single_determiners = ["a", "one", "the"]
+    plural_determiners = ["some", "many", "the"]
+    single_nouns = [
+        "bird",
+        "boy",
+        "car",
+        "cat",
+        "child",
+        "dog",
+        "girl",
+        "man",
+        "rabbit",
+        "woman",
+    ]
+    plural_nouns = [
+        "birds",
+        "boys",
+        "cars",
+        "cats",
+        "children",
+        "dogs",
+        "girls",
+        "men",
+        "rabbits",
+        "women",
+    ]
+    prepositions = [
+        "about",
+        "above",
+        "across",
+        "after",
+        "along",
+        "around",
+        "at",
+        "before",
+        "behind",
+        "below",
+        "beyond",
+        "by",
+        "despite",
+        "except",
+        "for",
+        "from",
+        "in",
+        "into",
+        "near",
+        "of",
+        "off",
+        "on",
+        "onto",
+        "out",
+        "over",
+        "past",
+        "to",
+        "under",
+        "with",
+        "without",
+    ]
+    adjetives = ["charming","cruel","fantastic","gentle","huge","perfect","rough","sharp","tasty","zealous"]
+
+    # This loop will repeat the statements inside it 30 times.
+    # If a loop's counting variable is not used inside the
+    # body of the loop, many programmers will use underscore
+    # (_) as the variable name for the counting variable.
+
+    for _ in range(30):
+        # Call the get prepositional_prhase function which
+        # should return a single prepositional phrase.
+
+        single_prepositional_phrase = get_first_prepositional_phrase(1)
+        separate_phrase = single_prepositional_phrase.split(" ")
+
+        single_determiner = separate_phrase[0]
+        adjetive = separate_phrase[1]
+        single_noun = separate_phrase[2]
+        preposition_word = separate_phrase[3]
+
+        # Verify that the word returned from get_preposition
+        # is one of the words in the prepositions list, determiners list (single) and noun list(single).
+
+        assert single_determiner in single_determiners
+        assert adjetive in adjetives
+        assert single_noun in single_nouns
+        assert preposition_word in prepositions
+
+        # Call the get_first_prepositional_phrase function which
+        # should return a plural preposition.
+        plural_prepositional_phrase = get_first_prepositional_phrase(2)
+        separate_phrase = plural_prepositional_phrase.split(" ")
+
+        plural_determiner = separate_phrase[0]
+        adjetive = separate_phrase[1]
+        plural_noun = separate_phrase[2]
+        preposition_word = separate_phrase[3]
+
+        # Verify that the word returned from get_first_prepositional_phrase
+        # is one of the words in the prepositions list, determiners list (plural) and noun list(plural).
+
+        assert plural_determiner in plural_determiners
+        assert adjetive in adjetives
+        assert plural_noun in plural_nouns
+        assert preposition_word in prepositions
+
+def test_get_adjetive():
+    adjetives = ["charming","cruel","fantastic","gentle","huge","perfect","rough","sharp","tasty","zealous"]
+    for _ in range(10):
+            # Call the get_verb function which
+            # should return a singular present tense verb.
+            adjetive = get_adjetive()
+
+            # Verify that the word returned from get_verb
+            # is one of the words in the singular_present_tense list.
+            assert adjetive in adjetives
 
 # Call the main function that is part of pytest so that the
 # computer will execute the test functions in this file.

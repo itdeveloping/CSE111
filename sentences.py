@@ -150,7 +150,12 @@ def get_first_prepositional_phrase(quantity):
             be single or pluaral.
     Return: a prepositional phrase.
     """
-    return (get_determiner(quantity)+" "+get_noun(quantity)+" "+get_preposition())
+    return (get_determiner(quantity)+" "+get_adjetive()+" "+get_noun(quantity)+" "+get_preposition())
+
+def get_adjetive():
+    adjetives = ["charming","cruel","fantastic","gentle","huge","perfect","rough","sharp","tasty","zealous"]
+    adjetive = random.choice(adjetives)
+    return adjetive
 
 #define main function
 def main():
