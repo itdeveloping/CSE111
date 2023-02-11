@@ -137,6 +137,20 @@ def get_prepositional_phrase(quantity):
     """
     return (get_preposition()+" "+get_determiner(quantity)+" "+get_noun(quantity))
     
+def get_first_prepositional_phrase(quantity):
+    """Build and return a prepositional phrase composed
+    of three words: a preposition, a determiner, and a
+    noun by calling the get_preposition, get_determiner,
+    and get_noun functions.
+
+    Parameter
+        quantity: an integer that determines if the
+            determiner and noun in the prepositional
+            phrase returned from this function should
+            be single or pluaral.
+    Return: a prepositional phrase.
+    """
+    return (get_determiner(quantity)+" "+get_noun(quantity)+" "+get_preposition())
 
 #define main function
 def main():
@@ -146,7 +160,8 @@ def main():
     for elements in list:
        quantity=elements[0]
        tense=elements[1]
-       print (get_determiner(quantity).capitalize(), get_noun(quantity), get_verb(quantity, tense),get_prepositional_phrase(quantity))
+       #print (get_determiner(quantity).capitalize(), get_noun(quantity), get_verb(quantity, tense),get_prepositional_phrase(quantity))
+       print (get_first_prepositional_phrase(quantity).capitalize(),get_noun(quantity),get_verb(quantity,tense), get_prepositional_phrase(quantity))
 
 #calls the main function
 main()
