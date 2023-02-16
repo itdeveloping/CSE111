@@ -14,9 +14,9 @@ def main(): # Has no parameters
 
     print(numbers) #Prints the numbers list
 
-    #quantity=random.uniform(1, 6)
-    #append_random_words(words, quantity)
-    #print (words)
+    
+    append_random_words(words, 3)
+    print (words)
 
 
 def append_random_numbers(numbers_list, quantity=1):
@@ -27,10 +27,11 @@ def append_random_numbers(numbers_list, quantity=1):
         numbers_list.append(addednumber)
 
 def append_random_words(words_list, quantity=1):
+    
     random_number=random.uniform(1, quantity)
     integer=round(random_number)
-    for element in words_list[1,integer]:
-        words_list.append(element)
+    for element in range(0,6):
+        words_list.append(words_list[element])
         
         # Call main to start this program.
 if __name__ == "__main__":
