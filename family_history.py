@@ -161,16 +161,21 @@ def print_marriages(marriages_dict, people_dict):
     WIFE_KEY_INDEX = 1
     WEDDING_YEAR_INDEX = 2    
     """
+   
     for item in marriages_dict.items():
-        MarriageData=item[1]
+        Husband=item[1][HUSBAND_KEY_INDEX]
+        Wife=item[1][WIFE_KEY_INDEX]
+        Wedd=item[1][WEDDING_YEAR_INDEX]
+        if Husband in people_dict:
+            HusbandName=people_dict[Husband][NAME_INDEX]
+            HusbandAgeAtWedd=Wedd-people_dict[Husband][BIRTH_YEAR_INDEX]
+        if Wife in people_dict:
+            WifeName=people_dict[Wife][NAME_INDEX]
+            WifeAgeAtWedd=Wedd-people_dict[Wife][BIRTH_YEAR_INDEX]
+
+        print(f"Husband: {HusbandName} Age {HusbandAgeAtWedd},  Wife {WifeName} Age {WifeAgeAtWedd}, Year of marriage {Wedd}")
+
         
-        Husband=MarriageData[HUSBAND_KEY_INDEX]
-        Wife=MarriageData[WIFE_KEY_INDEX]
-        WeddingYear=MarriageData[WIFE_KEY_INDEX]
-
-        PersonalData=people_dict[1]
-        HusbandName=PersonalData[NAME_INDEX]
-
     pass
 
 
