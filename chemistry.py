@@ -1,10 +1,12 @@
-# Author: Oscar Rodriguez 
+# Author: Oscar Rodriguez
 # 07 Prove Milestone: Lists
 from formula import parse_formula
 # define make_periodic_table function
+
+
 def make_periodic_table():
 
-    #creatre table as compund list
+    # creatre table as compund list
     periodic_table_list = {
         # [symbol, name, atomic_mass]
         "Ac": ["Actinium", 227],
@@ -102,9 +104,8 @@ def make_periodic_table():
         "Zn": ["Zinc", 65.38],
         "Zr": ["Zirconium", 91.224]
     }
-    #return compound list
+    # return compound list
     return periodic_table_list
-
 
 
 def compute_molar_mass(symbol_quantity_list, periodic_table_dict):
@@ -129,13 +130,28 @@ def compute_molar_mass(symbol_quantity_list, periodic_table_dict):
     """
     # Do the following for each inner list in the
     # compound symbol_quantity_list:
-        # Separate the inner list into symbol and quantity.
+    # Separate the inner list into symbol and quantity.
+    # Get the atomic mass for the symbol from the dictionary.
+    # Multiply the atomic mass by the quantity.
+    # Add the product into the total molar mass.
+    Count = 0
+    TotalMolarMass = 0
+    MolarMass = 0
+    AtomMass = 0
+    Atoms = 0
+    while Count < len(symbol_quantity_list):
+        Symbol = symbol_quantity_list[Count][SYMBOL_INDEX]
+        Atoms = symbol_quantity_list[Count][QUANTITY_INDEX]
         # Get the atomic mass for the symbol from the dictionary.
+        AtomMass = periodic_table_dict[Symbol][QUANTITY_INDEX]
         # Multiply the atomic mass by the quantity.
+        MolarMass = AtomMass*Atoms
         # Add the product into the total molar mass.
-
+        TotalMolarMass += MolarMass
+        Count += 1
     # Return the total molar mass.
-    return
+    return TotalMolarMass
+
 
 # Indexes for inner lists in the periodic table
 NAME_INDEX = 0
@@ -145,38 +161,48 @@ ATOMIC_MASS_INDEX = 1
 SYMBOL_INDEX = 0
 QUANTITY_INDEX = 1
 
-#define main function
+# define main function
+
+
 def main():
-     # Get a chemical formula for a molecule from the user.
+    # Get a chemical formula for a molecule from the user.
+    Formula = input('Enter the molecular formula of the sample: ')
 
     # Get the mass of a chemical sample in grams from the user.
+    MassGrams = float(input("Enter the mass in grams of the sample: "))
 
     # Call the make_periodic_table function and
-    #store compound list into table variable
-    table = make_periodic_table()
+    # store the periodic table in a variable.
+    TableElements = make_periodic_table()
 
-    
     # Call the parse_formula function to convert the
     # chemical formula given by the user to a compound
     # list that stores element symbols and the quantity
     # of atoms of each element in the molecule.
+    ListElements = parse_formula(Formula, TableElements)
 
     # Call the compute_molar_mass function to compute the
     # molar mass of the molecule from the compound list.
 
+    TMolar = compute_molar_mass(ListElements, TableElements)
     # Compute the number of moles in the sample.
 
+    MolarMass = MassGrams/TMolar
     # Print the molar mass.
 
-    # Print the number of moles.
+    print(f"Molar mass:  {MolarMass:.5f} moles")
 
-    
+    # Print the number of moles.
+    print(f"Number of moles:  {TMolar:.5f} grams/mole")
+
+   # table = make_periodic_table()
+
     # run through the list to print each element
-    for element in table.items():
-        data=element[1]
-        Name=data[NAME_INDEX]
-        Mass=data[ATOMIC_MASS_INDEX]
-        print(f"{Name} {Mass}")
+    # for element in table.items():
+    #   data=element[ATOMIC_MASS_INDEX]
+    #  Name=data[NAME_INDEX]
+    # print(f"{Name} {Mass}")
+
 
 # Call main to start this program.
 if __name__ == "__main__":
