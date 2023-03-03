@@ -1,5 +1,5 @@
 # Author: Oscar Rodriguez
-# 07 Prove Milestone: Lists
+# L08 Prove: Assignment
 from formula import parse_formula
 # define make_periodic_table function
 
