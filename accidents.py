@@ -1,6 +1,7 @@
 # Import the csv module so that it can be used
 # to read from the accidents.csv file.
 import csv
+import sys
 
 
 # Column numbers from the accidents.csv file.
@@ -18,42 +19,49 @@ FATIGUE_COLUMN = 9
 
 def main():
     # Prompt the user for a filename and open that text file.
-    filename = input("Name of file that contains NHTSA data: ")
-    with open(filename, "rt") as text_file:
+    try:
+        filename = input("Name of file that contains NHTSA data: ")
+        with open(filename, "rt") as text_file:
 
-        # Prompt the user for a percentage.
-        perc_reduc = float(input(
-            "Percent reduction of texting while driving [0, 100]: "))
+            # Prompt the user for a percentage.
+            perc_reduc = float(input(
+                "Percent reduction of texting while driving [0, 100]: "))
 
-        print()
-        print(f"With a {perc_reduc}% reduction in using a cell",
-            "phone while driving, approximately the",
-            "following number of injuries and deaths",
-            "would have been prevented in the USA.", sep="\n")
-        print()
-        print("Year, Injuries, Deaths")
+            print()
+            print(f"With a {perc_reduc}% reduction in using a cell",
+                "phone while driving, approximately the",
+                "following number of injuries and deaths",
+                "would have been prevented in the USA.", sep="\n")
+            print()
+            print("Year, Injuries, Deaths")
 
-        # Use the csv module to create a reader
-        # object that will read from the opened file.
-        reader = csv.reader(text_file)
+            # Use the csv module to create a reader
+            # object that will read from the opened file.
 
-        # The first line of the CSV file contains column headings
-        # and not a student's I-Number and name, so this statement
-        # skips the first line of the CSV file.
-        next(reader)
+            reader = csv.reader(text_file)
 
-        # Process each row in the CSV file.
-        for row in reader:
-            year = row[YEAR_COLUMN]
+            # The first line of the CSV file contains column headings
+            # and not a student's I-Number and name, so this statement
+            # skips the first line of the CSV file.
+            next(reader)
 
-            # Call the estimate_reduction function.
-            injur, fatal = estimate_reduction(
-                    row, PHONE_COLUMN, perc_reduc)
+            # Process each row in the CSV file.
+            for row in reader:
+                year = row[YEAR_COLUMN]
 
-            # Print the estimated reductions
-            # in injuries and fatalities.
-            print(year, injur, fatal, sep=", ")
+                # Call the estimate_reduction function.
+                injur, fatal = estimate_reduction(
+                        row, PHONE_COLUMN, perc_reduc)
 
+                # Print the estimated reductions
+                # in injuries and fatalities.
+                print(year, injur, fatal, sep=", ")
+    except FileNotFoundError:  
+        print(f"[Errno 2] No such file or directory: {filename}") 
+        print(f"Please choose a different file.")
+    except PermissionError:  
+        print(f"[Errno 13] Permission denied:: {filename}") 
+        print(f"Please choose a different file.")
 
 def estimate_reduction(row, behavior_key, perc_reduc):
     """Estimate and return the number of injuries and deaths that
