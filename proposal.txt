@@ -1,0 +1,40 @@
+CSE 111 Proposal for a Student Chosen Program
+
+    The purpose of this program is to consult information from an MYSQL 
+    database in order to calculate the loans that have been made in a 
+    company. You must save the information in a CSV file and perform the 
+    calculations to determine the number of loans granted per city and 
+    the average. There are several types of loans, so an amount must be 
+    made for each type of loan. In the end, determine the amount and interest 
+    that will be charged by all.
+
+1. What is the title of your program?
+
+    Loan Statistics
+
+2. What real-world problem will your program address or help to solve?
+    This program helps to obtain statistics on the number of loans granted 
+    by a company.
+
+3. What will you learn from developing this program?
+    With this program, learn to make a connection to an MYSQL database and 
+    obtain information from a table that contains the data of the loans.
+
+4. What Python modules will your program use?
+
+    Csv, datetime, math, pytest, MYSQL connector
+
+5. Will you separate your Python program into functions that each
+perform a single task?
+
+    Yes, the program is divided into functions to make the code reusable 
+    and more readable so that in the future it is easy to update or improve. 
+    It will determine what functions are required to achieve the purpose 
+    of the program.
+
+
+6. Will you write test functions to test at least two of your program
+functions?
+
+   Yeah. I will use the pytest module to test at least two of the functions 
+   that will be used in the project.
