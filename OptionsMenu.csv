@@ -1,0 +1,7 @@
+Options:,
+1.-, List saved loans
+2.-, Insert new loan
+3.-, Delete a loan
+4.-, Update a loan
+5.-, Transfer data from database to txt file
+6.-, Close database & Quit

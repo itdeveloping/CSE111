@@ -1,49 +1,55 @@
 import mysql.connector
-import json
+from mysql.connector import errorcode
 
-class DatabaseGateway:
+try:
+    cnx = mysql.connector.connect(user='dbuser', password='ABCD1234#',
+                              host='127.0.0.1',
+                              database='loans')
+except mysql.connector.Error as err:
+  if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+    print("Something is wrong with your user name or password")
+  elif err.errno == errorcode.ER_BAD_DB_ERROR:
+    print("Database does not exist")
+  else:
+    print(err)
+else:
+  print("Connection success!")
+  #cnx.close()
 
-    def db_connect(self):
+import datetime
+import mysql.connector
 
-        db_con = mysql.connector.connect(
-                    host     = "localhost",
-                    user     = "dbuser",
-                    password = "Abril2010",
-                    database = "loans"
-                 )
+#cnx = mysql.connector.connect(user='scott', database='employees')
+cursor = cnx.cursor()
 
-        # db_cursor = db_con.cursor()
+query = ("select * from loans")
 
-        return db_con
+#hire_start = datetime.date(1999, 1, 1)
+#hire_end = datetime.date(1999, 12, 31)
 
-    def db_query(self, query_string):
+#cursor.execute(query, (hire_start, hire_end))
+cursor.execute(query)
 
-        my_db    = self.db_connect()
-        mycursor = my_db.cursor()
-        mycursor.execute(query_string)
+for (id,loan, loan_date, quantity) in cursor:
+  print(f"Id: {id}, Loan type: {loan}, Date: {loan_date}, Quantity:  ${quantity}")
 
-        columns = mycursor.description
-        data  = []
+curB = cnx.cursor(buffered=True)
 
-        for row in mycursor.fetchall():
+insert_new_row = (
+  "INSERT INTO loans (loan, loan_date, quantity) "
+  "VALUES (%s, %s, %s)")
+curB.execute(insert_new_row,
+               ('ExtraOrdinary', '2023-03-30', 8500))
 
-            row_data = {}
+  # Commit the changes
+cnx.commit()
 
-            for (column_name, column_value) in enumerate(row):
+query = ("select * from loans order by loan")
 
-                row_data[columns[column_name][0]] = column_value
+cursor.execute(query)
 
-            data.append(row_data)
+for (id,loan, loan_date, quantity) in cursor:
+  print(f"Id: {id}, Loan type: {loan}, Date: {loan_date}, Quantity:  ${quantity}")
 
-        json_object = json.dumps(data)
-
-        return json.dumps(json.loads(json_object), indent = 2) 
-
-    def db_execute(self, query_string, data):
-
-        my_db = self.db_connect()
-        mycursor = my_db.cursor()
-        mycursor.execute(query_string, data)
-        my_db.commit()
-
-        self.lastrowid = str(mycursor.lastrowid)
+cursor.close()
+cnx.close()
