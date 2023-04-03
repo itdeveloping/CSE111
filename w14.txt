@@ -1,0 +1,23 @@
+Please respond thoroughly (at least two sentences for each question) to
+the following three questions.
+
+1. Describe an experience you had this semester where you saw the power of
+functions.
+I liked the possibility of developing a good function to be reused during the 
+program on various occasions or applications. This code can also be reused for 
+another program, it is like a formula that is applied to different variants.
+
+
+2. In your judgment, what is the value of test functions?
+
+Honestly, I struggled with the function test for MySQL, I couldn't manage to use 
+the tests for those functions that I have for the database. However, on other 
+occasions that I have used the function test, it is very useful and helps me to 
+know if the function is well developed.
+
+3. Describe your process for troubleshooting and fixing a program that
+has a problem. What is one thing you can do to improve your process?
+
+The key is to use function testing, however, the way I've been used to working 
+is through trial and error. I would like to master that technique of knowing 
+how to test any function.
